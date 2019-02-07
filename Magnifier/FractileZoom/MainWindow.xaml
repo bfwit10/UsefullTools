@@ -1,0 +1,31 @@
+﻿<Window x:Class="FractileZoom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FractileZoom"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="700">
+    <Grid x:Name="LayoutRoot">
+
+        <Image x:Name = "ContentPanel" Source="E:\DJINN\IT Umschulung\4 Programming\8 C#\4.0 WPF\Fraktale\Fraktal.jpg" Margin="52,49,111.6,51.4" MouseMove="ContentPanel_MouseMove" MouseEnter="ContentPanel_MouseEnter" MouseLeave="ContentPanel_MouseLeave" Stretch="Fill" RenderTransformOrigin="0.283,0.526"/>
+
+        <Canvas IsHitTestVisible="False" Name="MagnifierPanel">
+            <Ellipse Stroke="LightBlue" Name="MagnifierCircle" Height="100" Width="100" Canvas.Left="430" Canvas.Top="88">
+                <Ellipse.Fill>
+                    <VisualBrush x:Name="MagnifierBrush"  Visual="{Binding ElementName=ContentPanel}" ViewboxUnits="Absolute"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <!--<Button x:Name="MagnifierBtn_1" Content="" Canvas.Left="52" Canvas.Top="49" Width="100" Height="100" Opacity="0.1" MouseEnter="MagnifierBtn_1_MouseEnter"/>
+            <Button x:Name="MagnifierBtn_2" Content="" Opacity="0.1" Margin="152,49,441.6,321.4" Width="100" Height="100"/>-->
+        </Canvas>
+
+
+        <!--<Rectangle Name="MagnifierRectangle" Height="100" Width="100" Canvas.Left="52" Canvas.Top="49" RenderTransformOrigin="0.5,0.5" Cursor="Arrow" IsManipulationEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Rectangle.Fill>
+                <VisualBrush x:Name="MagnifierBrushRectangle" Visual="{Binding ElementName=ContentPanel}" ViewboxUnits="Absolute"/>
+            </Rectangle.Fill>
+        </Rectangle>-->
+
+    </Grid>
+</Window>

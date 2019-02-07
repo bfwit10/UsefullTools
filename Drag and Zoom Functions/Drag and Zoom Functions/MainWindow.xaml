@@ -1,0 +1,14 @@
+﻿<Window x:Class="Drag_and_Zoom_Functions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Drag_and_Zoom_Functions"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Canvas Name="cavRoot">
+            <Image Name="imgSource" Source="E:\DJINN\IT Umschulung\4 Programming\8 C#\4.0 WPF\Fraktale\Fraktal.jpg" Height="223" Width="262" Canvas.Left="148" Canvas.Top="84" RenderTransformOrigin="0.562,0.486"></Image>
+        </Canvas>
+    </Grid>
+</Window>
