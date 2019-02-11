@@ -15,15 +15,17 @@
         <Viewport3D Margin="4,4,4,4" RenderTransformOrigin="0.574,0.47" >
             <ModelVisual3D>
                 <ModelVisual3D.Content>
+                    
                     <Model3DGroup>
-                        <AmbientLight Color="Gray"/>
+                        <AmbientLight Color="LightGreen"/>
                         <DirectionalLight Color="Gray" Direction="1,-2,-3"/>
                         <DirectionalLight Color="LawnGreen" Direction="-1,2,3"/>
+                        
                         <GeometryModel3D x:Name="Cube">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions="
-                                                -1,-1,-1  1,-1,-1    1,-1,1   -1,-1,1
-                                                -1,-1,1   1,-1,1     1,1,1    -1,1,1
+                                                -1,-1,-1  1,-1,-1  1,-1, 1 -1,-1,1
+                                                -0.5,-0.5,0.5   0.5,-0.5,0.5     0.5,0.5,0.5    -0.5,0.5,0.5
                                                 1,-1,1    1,-1,-1    1,1,-1    1,1,1
                                                 1,1,1     1,1,-1    -1,1,-1    -1,1,1
                                                 -1,-1,1   -1,1,1    -1,1,-1     -1,-1,-1
@@ -42,15 +44,32 @@
                             <GeometryModel3D.Material>
                                 <DiffuseMaterial Brush="GhostWhite"/>
                             </GeometryModel3D.Material>
+                            <GeometryModel3D.BackMaterial>
+                                <DiffuseMaterial Brush="PaleVioletRed"/>
+                            </GeometryModel3D.BackMaterial>
                         </GeometryModel3D>
+                        <!--Würfel muss noch auf die entsprechende Größe angepasst werden, damit platz für die einzelnen Flächen gegeben ist.-->
+                        <!--hier eine neue Model3DGroup in der die Flächen definiert werden-->
+                        <!--Diese können dann als einzelne Objekte abgegriffen und mit texturen versehen werden. Sowie anschließend an eine Datenbank angebunden werden.-->
+                                                                                          
                     </Model3DGroup>
                 </ModelVisual3D.Content>
+                
+                <ModelVisual3D.Transform>
+                    <RotateTransform3D>
+                        <RotateTransform3D.Rotation>
+                            <AxisAngleRotation3D Axis=" 0.5,20,20 " Angle="50"></AxisAngleRotation3D>
+                        </RotateTransform3D.Rotation>
+                    </RotateTransform3D>
+                </ModelVisual3D.Transform>
+                
             </ModelVisual3D>
             <ModelVisual3D>
                 <ModelVisual3D.Content>
                     <DirectionalLight x:Name="dirLightMain" Direction="-1,-0,2" Color="Gray"></DirectionalLight>
                 </ModelVisual3D.Content>
             </ModelVisual3D>
+            
             <Viewport3D.Camera>
                 <PerspectiveCamera
                     Position="2,4,6"
@@ -60,7 +79,7 @@
                 </PerspectiveCamera>                
             </Viewport3D.Camera>
         </Viewport3D>
-        <Label></Label>
-        <Label></Label>
+        <Label x:Name="angleContent_y" Content="Y - Achse: 0° " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.859,1.734" Margin="660,49,0,0" Width="87"></Label>
+        <Label x:Name="angleContent_x" Content="X - Achse: 0° " Margin="660,345,48.6,49"></Label>
     </Grid>
 </Window>

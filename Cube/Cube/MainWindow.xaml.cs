@@ -24,5 +24,17 @@ namespace Cube
         {
             InitializeComponent();
         }
+
+        private void Scollbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {           
+            angleContent_x.Content = "X - Achse: " + Math.Floor(vScroll.Value).ToString() + "°";
+            Cube.Transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector(1, 0, 0), vScroll.Value));
+        }
+
+        private void Scollbar_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            angleContent_y = "Y - Achse: " + Math.Floor(hScroll.Value).ToString() + "°";
+            Cube.Transform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), hScroll.Value));
+        }
     }
 }
