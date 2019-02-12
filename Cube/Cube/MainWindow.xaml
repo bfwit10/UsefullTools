@@ -7,25 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ScrollBar HorizontalAlignment="Left" Margin="767,10,0,0" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10" 
-                   SmallChange="1" Minimum="-180" Value ="0" ValueChanged="ScrollBar_ValueChanged" Width="17" Height="400" Background="#FFC1FABB"/>
-        <ScrollBar HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Orientation="Horizontal" Minimum ="-180" Maximum="180" 
                    LargeChange="10" SmallChange="1" Value ="0" ValueChanged="ScrollBar_ValueChanged_1" Width="752" Height="17" Background="#FFC1FABB"/>
+        <ScrollBar x:Name="Scrollbar_X" HorizontalAlignment="Left" Margin="767,10,0,0" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10" 
+                   SmallChange="1" Minimum="-180" Maximum ="180" Value ="0" ValueChanged="Scrollbar_X_ValueChanged" Width="17" Height="400" Background="#FFC1FABB"/>
+        <ScrollBar x:Name="Scrollbar_Y" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Orientation="Horizontal" Minimum ="-180" Maximum="180" 
+                   LargeChange="10" SmallChange="1" Value ="0" ValueChanged="Scrollbar_Y_ValueChanged" Width="752" Height="17" Background="#FFC1FABB"/>
 
-        <Viewport3D Margin="4,4,4,4" RenderTransformOrigin="0.574,0.47" >
-            <ModelVisual3D>
+        <Viewport3D MouseLeftButtonDown="Viewport3D_MouseLeftButtonDown" Margin="4,4,4,4" RenderTransformOrigin="0.574,0.47" >
+            
+            <ModelVisual3D x:Name="Cube">
                 <ModelVisual3D.Content>
-                    
                     <Model3DGroup>
                         <AmbientLight Color="LightGreen"/>
                         <DirectionalLight Color="Gray" Direction="1,-2,-3"/>
                         <DirectionalLight Color="LawnGreen" Direction="-1,2,3"/>
-                        
-                        <GeometryModel3D x:Name="Cube">
+
+                        <!--Würfel muss noch auf die entsprechende Größe angepasst werden, damit platz für die einzelnen Flächen gegeben ist.-->
+                        <GeometryModel3D x:Name="CubeModel">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions="
                                                 -1,-1,-1  1,-1,-1  1,-1, 1 -1,-1,1
-                                                -0.5,-0.5,0.5   0.5,-0.5,0.5     0.5,0.5,0.5    -0.5,0.5,0.5
+                                                0,0,0  0,0,0    0,0,0    0,0,0
                                                 1,-1,1    1,-1,-1    1,1,-1    1,1,1
                                                 1,1,1     1,1,-1    -1,1,-1    -1,1,1
                                                 -1,-1,1   -1,1,1    -1,1,-1     -1,-1,-1
@@ -45,26 +47,66 @@
                                 <DiffuseMaterial Brush="GhostWhite"/>
                             </GeometryModel3D.Material>
                             <GeometryModel3D.BackMaterial>
-                                <DiffuseMaterial Brush="PaleVioletRed"/>
+                                <DiffuseMaterial Brush="CornflowerBlue"/>
                             </GeometryModel3D.BackMaterial>
                         </GeometryModel3D>
-                        <!--Würfel muss noch auf die entsprechende Größe angepasst werden, damit platz für die einzelnen Flächen gegeben ist.-->
-                        <!--hier eine neue Model3DGroup in der die Flächen definiert werden-->
-                        <!--Diese können dann als einzelne Objekte abgegriffen und mit texturen versehen werden. Sowie anschließend an eine Datenbank angebunden werden.-->
-                                                                                          
+
+                        <!--Diese können dann als einzelne Objekte abgegriffen und mit Texturen versehen werden. Sowie anschließend an eine Datenbank angebunden werden.-->
+                        <GeometryModel3D x:Name="Area1">
+                            <GeometryModel3D.Geometry>
+                                <MeshGeometry3D Positions="-0.5,-0.5,1   0.5,-0.5,1    0.5,0.5,1    -0.5,0.5,1"
+                                                    TriangleIndices="0 1 2  2 3 0"
+                                                    />
+                            </GeometryModel3D.Geometry>
+                            <GeometryModel3D.Material>
+                                <DiffuseMaterial Brush="GhostWhite" />
+                            </GeometryModel3D.Material>
+                            <GeometryModel3D.BackMaterial>
+                                <DiffuseMaterial Brush="Violet"/>
+                            </GeometryModel3D.BackMaterial>
+                        </GeometryModel3D>
+
+                        <GeometryModel3D x:Name="Area2">
+                            <GeometryModel3D.Geometry>
+                                <MeshGeometry3D Positions="-0.5,-0.5,0.5   0.5,-0.5,0.5    0.5,0.5,0.5  -0.5,0.5,0.5"
+                                                    TriangleIndices="0 1 2  2 3 0"
+                                                    />
+                            </GeometryModel3D.Geometry>
+                            <GeometryModel3D.Material>
+                                <DiffuseMaterial Brush="Violet"/>
+                            </GeometryModel3D.Material>
+                            <GeometryModel3D.BackMaterial>
+                                <DiffuseMaterial Brush="Violet"/>
+                            </GeometryModel3D.BackMaterial>
+                        </GeometryModel3D>
+
+                        <GeometryModel3D x:Name="Area3">
+                            <GeometryModel3D.Geometry>
+                                <MeshGeometry3D Positions="-0.5,-0.5,0   0.5,-0.5,0    0.5,0.5,0  -0.5,0.5,0"
+                                                    TriangleIndices="0 1 2  2 3 0"
+                                                    />
+                            </GeometryModel3D.Geometry>
+                            <GeometryModel3D.Material>
+                                <DiffuseMaterial Brush="MistyRose"/>
+                            </GeometryModel3D.Material>
+                            <GeometryModel3D.BackMaterial>
+                                <DiffuseMaterial Brush="Violet"/>
+                            </GeometryModel3D.BackMaterial>
+                        </GeometryModel3D>
+
                     </Model3DGroup>
                 </ModelVisual3D.Content>
-                
+
                 <ModelVisual3D.Transform>
                     <RotateTransform3D>
                         <RotateTransform3D.Rotation>
-                            <AxisAngleRotation3D Axis=" 0.5,20,20 " Angle="50"></AxisAngleRotation3D>
+                            <AxisAngleRotation3D Axis=" 0,1,0 " Angle="20"></AxisAngleRotation3D>
                         </RotateTransform3D.Rotation>
                     </RotateTransform3D>
                 </ModelVisual3D.Transform>
-                
             </ModelVisual3D>
-            <ModelVisual3D>
+            
+            <ModelVisual3D x:Name="Light">
                 <ModelVisual3D.Content>
                     <DirectionalLight x:Name="dirLightMain" Direction="-1,-0,2" Color="Gray"></DirectionalLight>
                 </ModelVisual3D.Content>
@@ -79,7 +121,7 @@
                 </PerspectiveCamera>                
             </Viewport3D.Camera>
         </Viewport3D>
-        <Label x:Name="angleContent_y" Content="Y - Achse: 0° " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.859,1.734" Margin="660,49,0,0" Width="87"></Label>
-        <Label x:Name="angleContent_x" Content="X - Achse: 0° " Margin="660,345,48.6,49"></Label>
+        <Label x:Name="angleContent_y" Content="Y - Achse: 0° " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.859,1.734" Margin="563,68,0,0" Width="101" Height="36"></Label>
+        <Label x:Name="angleContent_x" Content="X - Achse: 0° " Margin="565,109,129.6,279"></Label>
     </Grid>
 </Window>
