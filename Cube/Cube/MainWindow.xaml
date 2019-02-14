@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Cube"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
+        <!--- LargeChange="10" SmallChange="1" Value ="0" ValueChanged="ScrollBar_ValueChanged_1" Width="752" Height="17" Background="#FFC1FABB"/> -->
         <ScrollBar x:Name="Scrollbar_X" HorizontalAlignment="Left" Margin="767,10,0,0" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10" 
                    SmallChange="1" Minimum="-180" Maximum ="180" Value ="0" ValueChanged="Scrollbar_X_ValueChanged" Width="17" Height="400" Background="#FFC1FABB"/>
         <ScrollBar x:Name="Scrollbar_Y" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Orientation="Horizontal" Minimum ="-180" Maximum="180" 
