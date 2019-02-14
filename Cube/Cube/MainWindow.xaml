@@ -7,13 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-                   LargeChange="10" SmallChange="1" Value ="0" ValueChanged="ScrollBar_ValueChanged_1" Width="752" Height="17" Background="#FFC1FABB"/>
         <ScrollBar x:Name="Scrollbar_X" HorizontalAlignment="Left" Margin="767,10,0,0" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10" 
                    SmallChange="1" Minimum="-180" Maximum ="180" Value ="0" ValueChanged="Scrollbar_X_ValueChanged" Width="17" Height="400" Background="#FFC1FABB"/>
         <ScrollBar x:Name="Scrollbar_Y" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Orientation="Horizontal" Minimum ="-180" Maximum="180" 
                    LargeChange="10" SmallChange="1" Value ="0" ValueChanged="Scrollbar_Y_ValueChanged" Width="752" Height="17" Background="#FFC1FABB"/>
 
-        <Viewport3D MouseLeftButtonDown="Viewport3D_MouseLeftButtonDown" Margin="4,4,4,4" RenderTransformOrigin="0.574,0.47" >
+        <Viewport3D Margin="4,4,4,4" RenderTransformOrigin="0.574,0.47" PreviewMouseWheel="Viewport3D_PreviewMouseWheel">
             
             <ModelVisual3D x:Name="Cube">
                 <ModelVisual3D.Content>
@@ -22,17 +21,18 @@
                         <DirectionalLight Color="Gray" Direction="1,-2,-3"/>
                         <DirectionalLight Color="LawnGreen" Direction="-1,2,3"/>
 
-                        <!--Würfel muss noch auf die entsprechende Größe angepasst werden, damit platz für die einzelnen Flächen gegeben ist.-->
+                        <!--Würfelflächen angeordnet mit einer Länge von 52, damit 51 Flächen in den Würfel eingehangen werden können
+                        Ebene 1 entspricht der Vorderseite des Würfels-->
                         <GeometryModel3D x:Name="CubeModel">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions="
-                                                -1,-1,-1  1,-1,-1  1,-1, 1 -1,-1,1
-                                                0,0,0  0,0,0    0,0,0    0,0,0
-                                                1,-1,1    1,-1,-1    1,1,-1    1,1,1
-                                                1,1,1     1,1,-1    -1,1,-1    -1,1,1
-                                                -1,-1,1   -1,1,1    -1,1,-1     -1,-1,-1
-                                                -1,-1,-1  -1,1,-1    1,1,-1     1,-1,-1
-                                                 "                                               
+                                                0,0,0               0,0,0               0,0,0           0,0,0
+                                                26,-26,-26          -26,-26,-26       -26,26,-26      26,26,-26
+                                                0,0,0               0,0,0               0,0,0         26,26,26
+                                                -26,-26,-26       -26,-26,26            -26,26,26       -26,26,-26
+                                                -26,26,26           26,26,26            26,26,-26     -26,26,-26
+                                                26,-26,26           -26,-26,26          -26,-26,-26      26,-26,-26
+                                                   "                                             
                                                 TriangleIndices="
                                                 0 1 2       2 3 0   
                                                 4 5 6       6 7 4
@@ -49,9 +49,12 @@
                             <GeometryModel3D.BackMaterial>
                                 <DiffuseMaterial Brush="CornflowerBlue"/>
                             </GeometryModel3D.BackMaterial>
+                            <GeometryModel3D.Transform>
+                                <ScaleTransform3D ScaleX="1" ScaleY="1" ScaleZ="1" CenterX="0" CenterY="0" CenterZ="0"/>
+                            </GeometryModel3D.Transform>
                         </GeometryModel3D>
 
-                        <!--Diese können dann als einzelne Objekte abgegriffen und mit Texturen versehen werden. Sowie anschließend an eine Datenbank angebunden werden.-->
+                        <!--Model der Ebenen. Die dann als Objekt entlang der Z - Achse im Würfel generiert werden-->
                         <GeometryModel3D x:Name="Area1">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions="-0.5,-0.5,1   0.5,-0.5,1    0.5,0.5,1    -0.5,0.5,1"
@@ -97,6 +100,7 @@
                     </Model3DGroup>
                 </ModelVisual3D.Content>
 
+                <!--Drehung und Rotation des gesamten 3D Körpers-->
                 <ModelVisual3D.Transform>
                     <RotateTransform3D>
                         <RotateTransform3D.Rotation>
@@ -114,7 +118,7 @@
             
             <Viewport3D.Camera>
                 <PerspectiveCamera
-                    Position="2,4,6"
+                    Position="80,100,150"
                     LookDirection="-1,-2,-3"
                     UpDirection="0,1,0"
                     FieldOfView="70">
